@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Light Force</title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-white: #FFFFFF;
+            --secondary-purple: #8E44AD; /* From your logo */
+            --accent-orange: #F7941D;
+            --text-dark: #1A1A1A;
+            --soft-grey: #F4F7F6;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-white);
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Split Screen for Desktop */
+        .login-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .login-visual {
+            flex: 1;
+            background: linear-gradient(135deg, var(--secondary-purple), #4e2a84);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 40px;
+        }
+
+        .login-form-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .form-card {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .brand-font { font-family: 'Michroma', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+        .logo { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 40px; }
+        .logo span { color: var(--secondary-purple); }
+
+        h2 { margin-bottom: 10px; color: var(--text-dark); }
+        p { color: #666; margin-bottom: 30px; font-size: 0.9rem; }
+
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; color: var(--secondary-purple); }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--soft-grey);
+            border-radius: 4px;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus { border-color: var(--secondary-purple); }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--secondary-purple);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Michroma', sans-serif;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-login:hover { background-color: var(--text-dark); border-bottom: 4px solid var(--accent-orange); }
+
+        .forgot-pass { display: block; text-align: right; font-size: 0.8rem; color: var(--accent-orange); text-decoration: none; margin-top: 10px; }
+
+        @media (max-width: 768px) { .login-visual { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-visual">
+            <h1 class="brand-font" style="font-size: 3rem;">POWER<br>RESTORED.</h1>
+            <p style="color: rgba(255,255,255,0.8); text-align: center; margin-top: 20px;">Access your procurement dashboard and track your vetted deliveries in real-time.</p>
+        </div>
+        <div class="login-form-side">
+            <div class="form-card">
+                <div class="logo brand-font">LIGHT<span>FORCE</span></div>
+                <h2>Welcome Back</h2>
+                <p>Enter your credentials to manage your assets.</p>
+                
+                <form>
+                    <div class="input-group">
+                        <label>WORK EMAIL</label>
+                        <input type="email" placeholder="name@company.com">
+                    </div>
+                    <div class="input-group">
+                        <label>SECURE PASSWORD</label>
+                        <input type="password" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn-login">AUTHORIZE ACCESS</button>
+                    <a href="#" class="forgot-pass">Lost your key? Reset here.</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
