@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Light Force | Asset-Free Electrical Procurement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@300;400;600;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-purple: #8E44AD;
+            --brand-purple-glow: rgba(142, 68, 173, 0.4);
+            --brand-orange: #F27A54;
+            --obsidian: #0A0A0A;
+            --dark-grey: #1A1A1A;
+            --stark-white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.03);
+            --apple-grey: #F5F5F7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--obsidian);
+            color: var(--stark-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Michroma', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .mono {
+            font-family: 'Roboto Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--brand-orange);
+            font-weight: 700;
+        }
+
+        /* Tactical Header Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,10,1) 80%, rgba(10,10,10,0));
+            z-index: 1000;
+            gap: 15px;
+        }
+
+        .logo { font-size: 1rem; font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: var(--brand-purple); text-shadow: 0 0 15px var(--brand-purple-glow); }
+
+        .switcher {
+            display: flex;
+            background: var(--dark-grey);
+            padding: 4px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .switch-btn {
+            flex: 1;
+            padding: 10px 5px;
+            border-radius: 50px;
+            font-family: 'Michroma';
+            font-size: 0.55rem;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .switch-btn.active {
+            background: var(--brand-purple);
+            color: white;
+            box-shadow: 0 5px 15px var(--brand-purple-glow);
+        }
+
+        .status-bar {
+            display: none;
+            font-size: 0.5rem;
+        }
+
+        /* Page Management */
+        .page { display: none; min-height: 100vh; animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        .page.active { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* Layout Elements */
+        .container { padding: 140px 6% 80px; max-width: 1400px; margin: 0 auto; }
+
+        /* Procurement Engine */
+        .engine-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .glass-panel {
+            background: var(--dark-grey);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--brand-purple), transparent);
+        }
+
+        .upload-box {
+            border: 2px dashed rgba(255,255,255,0.1);
+            padding: 40px 15px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .upload-box:active { border-color: var(--brand-orange); background: rgba(242, 122, 84, 0.05); }
+
+        .line-item-input {
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            width: 100%;
+            margin-bottom: 12px;
+            font-family: 'Roboto Mono';
+            font-size: 0.85rem;
+            -webkit-appearance: none;
+        }
+
+        /* Enforcer Cards */
+        .enforcer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .enforcer-card {
+            background: var(--dark-grey);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.5s;
+            overflow: hidden;
+        }
+
+        .card-header {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 60%;
+            background: linear-gradient(to top, var(--dark-grey), transparent);
+        }
+
+        .status-dot {
+            position: absolute;
+            top: 15px; right: 15px;
+            padding: 4px 10px;
+            background: rgba(0,255,100,0.15);
+            color: #00ff64;
+            border: 1px solid rgba(0,255,100,0.5);
+            border-radius: 20px;
+            font-size: 0.55rem;
+            font-family: 'Roboto Mono';
+            z-index: 10;
+        }
+
+        .card-body { padding: 25px; }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Buttons */
+        .btn-action {
+            width: 100%;
+            padding: 20px;
+            background: var(--brand-orange);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Michroma';
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        footer {
+            padding: 60px 8%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Desktop Overrides */
+        @media (min-width: 1000px) {
+            nav { padding: 30px 8%; flex-direction: row; justify-content: space-between; gap: 0; }
+            .logo { font-size: 1.2rem; }
+            .switcher { width: auto; max-width: none; }
+            .switch-btn { padding: 10px 25px; font-size: 0.6rem; }
+            .status-bar { display: block; }
+            .container { padding: 180px 10% 100px; }
+            .engine-wrap { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
+            .glass-panel { padding: 40px; }
+            .enforcer-grid { grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
+            .card-header { height: 350px; }
+            footer { flex-direction: row; justify-content: space-between; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo brand-font">LIGHT<span>FORCE</span></div>
+        <div class="switcher">
+            <button id="nav-procurement" class="switch-btn active" onclick="showPage('procurement')">Procurement Engine</button>
+            <button id="nav-enforcers" class="switch-btn" onclick="showPage('enforcers')">Deploy Enforcers</button>
+        </div>
+        <div class="mono status-bar">Status: System Online</div>
+    </nav>
+
+    <!-- PROCUREMENT ENGINE PAGE -->
+    <main id="procurement" class="page active">
+        <div class="container">
+            <p class="mono">// Engine v4.0.1</p>
+            <h1 style="font-size: clamp(1.8rem, 8vw, 3.5rem); margin: 10px 0;">Strategic Sourcing.</h1>
+            <p style="color: rgba(255,255,255,0.5); max-width: 600px; font-size: 0.95rem;">Direct-to-site electrical procurement. No middleman. No warehouse. Zero counterfeit risk.</p>
+
+            <div class="engine-wrap">
+                <div class="glass-panel">
+                    <h3 style="font-size: 0.75rem; margin-bottom: 25px;">Material Specification List</h3>
+                    <div class="upload-box">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--brand-orange)" stroke-width="1.5" style="margin-bottom: 15px;">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                        </svg>
+                        <p style="font-size: 0.85rem; font-weight: 600;">Upload Drawing / BoQ</p>
+                        <p style="font-size: 0.6rem; color: rgba(255,255,255,0.4); margin-top: 8px;">.PDF, .XLSX, .JPG</p>
+                    </div>
+                    
+                    <div style="margin-top: 10px;">
+                        <p class="mono" style="font-size: 0.55rem; margin-bottom: 12px;">Or Add Line Items Manually</p>
+                        <input type="text" class="line-item-input" placeholder="Item Name (e.g. 2.5mm Cable)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <input type="text" class="line-item-input" placeholder="Quantity">
+                            <input type="text" class="line-item-input" placeholder="Brand">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="background: rgba(142, 68, 173, 0.05); border-color: var(--brand-purple);">
+                    <h3 style="font-size: 0.75rem; margin-bottom: 25px; color: var(--brand-purple);">Deployment Log</h3>
+                    <div style="font-family: 'Roboto Mono'; font-size: 0.65rem;">
+                        <div class="spec-row"><span>PROTOCOL:</span> <span>Direct Factory</span></div>
+                        <div class="spec-row"><span>VETTING:</span> <span>IEEE Verified</span></div>
+                        <div class="spec-row"><span>LOCATION:</span> <span style="color: var(--brand-orange);">Awaiting...</span></div>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <label class="mono" style="font-size: 0.5rem; display: block; margin-bottom: 8px;">Site Address</label>
+                        <input type="text" class="line-item-input" style="background: rgba(255,255,255,0.05);" placeholder="Lagos, NG">
+                        <button class="btn-action" style="margin-top: 15px;">Execute Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ENFORCERS PAGE -->
+    <main id="enforcers" class="page">
+        <div class="container">
+            <p class="mono">// Human Capital Vetting</p>
+            <h1 style="font-size: clamp(1.8rem, 8vw, 3.5rem); margin: 10px 0;">Deploy Enforcers.</h1>
+            <p style="color: rgba(255,255,255,0.5); max-width: 600px; font-size: 0.95rem;">Deploy certified electrical engineers to audit, install, and protect your infrastructure.</p>
+
+            <div class="enforcer-grid">
+                <div class="enforcer-card">
+                    <span class="status-dot">ACTIVE IN FIELD</span>
+                    <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <div class="card-body">
+                        <h3 style="font-size: 0.9rem; margin-bottom: 5px;">Agent 09 // Field Lead</h3>
+                        <p class="mono" style="font-size: 0.5rem; color: var(--brand-purple); margin-bottom: 20px;">Specialty: High-Voltage</p>
+                        <div class="spec-row"><span>Rank</span> <span>Senior Enforcer</span></div>
+                        <div class="spec-row"><span>Accuracy</span> <span>99.9% Audit</span></div>
+                        <button class="btn-action" style="margin-top: 25px; background: transparent; border: 1px solid var(--brand-orange);">Deploy To Site</button>
+                    </div>
+                </div>
+
+                <div class="enforcer-card">
+                    <span class="status-dot" style="background: rgba(255, 100, 0, 0.1); color: var(--brand-orange); border-color: var(--brand-orange);">ON STANDBY</span>
+                    <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="card-body">
+                        <h3 style="font-size: 0.9rem; margin-bottom: 5px;">Agent 14 // Auditor</h3>
+                        <p class="mono" style="font-size: 0.5rem; color: var(--brand-purple); margin-bottom: 20px;">Specialty: Material Integrity</p>
+                        <div class="spec-row"><span>Rank</span> <span>Vetting Specialist</span></div>
+                        <div class="spec-row"><span>Accuracy</span> <span>100% Detection</span></div>
+                        <button class="btn-action" style="margin-top: 25px;">Deploy To Site</button>
+                    </div>
+                </div>
+
+                <div class="enforcer-card">
+                    <span class="status-dot">ACTIVE IN FIELD</span>
+                    <div class="card-header" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="card-body">
+                        <h3 style="font-size: 0.9rem; margin-bottom: 5px;">Agent 22 // Command</h3>
+                        <p class="mono" style="font-size: 0.5rem; color: var(--brand-purple); margin-bottom: 20px;">Specialty: Project Timeline</p>
+                        <div class="spec-row"><span>Rank</span> <span>Command Lead</span></div>
+                        <div class="spec-row"><span>Accuracy</span> <span>On-Time</span></div>
+                        <button class="btn-action" style="margin-top: 25px; background: transparent; border: 1px solid var(--brand-orange);">Deploy To Site</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="brand-font logo">LIGHT<span>FORCE</span></div>
+        <div style="font-family: 'Roboto Mono'; font-size: 0.6rem; opacity: 0.5;">© 2026 // NIGERIA // ASSET-FREE LOGISTICS</div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.switch-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
