@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Light Force Electric | Interactive Brand Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-navy: #0E2338;
+            --brand-orange: #F27A54;
+            --warm-bg: #F9FAFB;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--warm-bg);
+            color: #1a202c;
+        }
+        .font-brand { font-family: 'Michroma', sans-serif; }
+        
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 350px; 
+            max-height: 400px; 
+        }
+
+        .glass-nav {
+            background: rgba(14, 35, 56, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .leadership-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .leadership-card.active {
+            border-color: var(--brand-orange);
+            background: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            height: 60px;
+            width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #EDF2F7;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container { height: 300px; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed w-full z-50 px-6 py-4 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-brand text-white text-lg tracking-tighter">
+                LIGHT<span class="text-[#F27A54]">FORCE</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-[10px] font-brand text-white/80 uppercase tracking-widest">
+                <a href="#purpose" class="hover:text-white transition">Purpose</a>
+                <a href="#solutions" class="hover:text-white transition">Solutions</a>
+                <a href="#leadership" class="hover:text-white transition">Leadership</a>
+                <a href="#impact" class="hover:text-white transition">Impact</a>
+            </div>
+            <a href="#cta" class="bg-[#F27A54] text-white px-5 py-2 rounded text-[10px] font-brand">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden bg-[#0E2338]">
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover" alt="Reliable Energy">
+        </div>
+        <div class="relative z-10 text-center max-w-4xl">
+            <p class="text-[#F27A54] font-brand text-xs mb-4 tracking-[0.3em] uppercase">About LightForce Electric</p>
+            <h1 class="text-4xl md:text-6xl font-brand text-white leading-tight mb-8">Confidence Begins With Reliable Energy.</h1>
+            <p class="text-lg md:text-xl text-white/80 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                Building Africa’s most trusted energy company by making reliable energy simple to understand, practical to adopt, and dependable to grow with.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#purpose" class="bg-white text-[#0E2338] px-8 py-4 rounded font-semibold transition hover:bg-slate-100">Explore Our Story</a>
+                <a href="#" class="border border-white/30 text-white px-8 py-4 rounded font-semibold backdrop-blur-sm hover:bg-white/10 transition">Watch Our Vision</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 1: Who & Why -->
+    <section id="purpose" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="mb-16">
+            <p class="text-xs font-bold text-[#F27A54] uppercase tracking-widest mb-2">The Foundation</p>
+            <h2 class="text-3xl font-brand text-[#0E2338]">Our Purpose & Origin</h2>
+            <p class="mt-4 text-gray-600 max-w-3xl">This section explores the core reason LightForce Electric exists. We navigate the gap between the uncertainty of the current energy market and the confidence provided by our engineered solutions.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="text-3xl mb-6">🏢</div>
+                <h3 class="text-xl font-bold text-[#0E2338] mb-4">Who We Are</h3>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    LightForce Electric is a Nigerian energy and electrical solutions company committed to delivering trusted products and professional services. We aren't just a supplier; we are your technical partner in energy.
+                </p>
+                <ul class="space-y-3 text-sm text-gray-500 italic">
+                    <li>"We don’t simply supply products. We build trust."</li>
+                </ul>
+            </div>
+            <div class="bg-[#0E2338] p-10 rounded-2xl text-white shadow-xl">
+                <div class="text-3xl mb-6">⚡</div>
+                <h3 class="text-xl font-bold mb-4">Why We Exist</h3>
+                <p class="text-white/80 leading-relaxed mb-6">
+                    Reliable energy should never be uncertain. We exist to remove uncertainty from every energy decision by providing expert guidance and factory-direct, quality-tested products.
+                </p>
+                <div class="bg-white/10 p-4 rounded-lg border border-white/10">
+                    <p class="text-xs uppercase tracking-widest text-[#F27A54] font-bold">The Goal</p>
+                    <p class="text-sm mt-1">To replace market uncertainty with technical confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Integrated Solutions -->
+    <section id="solutions" class="py-24 bg-gray-100 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-xs font-bold text-[#F27A54] uppercase tracking-widest mb-2">What We Do</p>
+                <h2 class="text-3xl font-brand text-[#0E2338]">Integrated Power Solutions</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Discover the full spectrum of our capabilities. From the initial procurement of factory-vetted materials to the long-term maintenance of complex solar grids.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Cards -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="service-icon">📦</div>
+                    <h4 class="font-bold text-[#0E2338] mb-2">01. Energy Products</h4>
+                    <p class="text-sm text-gray-600">Quality-tested electrical products sourced directly from trusted primary manufacturers.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="service-icon">☀️</div>
+                    <h4 class="font-bold text-[#0E2338] mb-2">02. Renewable Energy</h4>
+                    <p class="text-sm text-gray-600">Custom solar power systems and battery storage for clean, dependable power.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="service-icon">🔄</div>
+                    <h4 class="font-bold text-[#0E2338] mb-2">03. Backup Power</h4>
+                    <p class="text-sm text-gray-600">Dependable backup systems engineered for uninterrupted residential and commercial ops.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="service-icon">🛠️</div>
+                    <h4 class="font-bold text-[#0E2338] mb-2">04. Installation</h4>
+                    <p class="text-sm text-gray-600">Precision electrical and solar installation by certified, experienced field engineers.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="service-icon">📐</div>
+                    <h4 class="font-bold text-[#0E2338] mb-2">05. Project Support</h4>
+                    <p class="text-sm text-gray-600">End-to-end technical load calculations and site management for complex projects.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="service-icon">🛡️</div>
+                    <h4 class="font-bold text-[#0E2338] mb-2">06. After-Sales</h4>
+                    <p class="text-sm text-gray-600">Long-term maintenance, system health audits, and reliable warranty support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Philosophy & Visualization -->
+    <section id="impact" class="py-24 px-6 bg-[#0E2338] text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-xs font-bold text-[#F27A54] uppercase tracking-widest mb-2">The Difference</p>
+                    <h2 class="text-3xl font-brand mb-6 leading-tight">Trust Is Our Most Valuable Product.</h2>
+                    <p class="text-white/70 mb-8 leading-relaxed">
+                        We don't just sell equipment; we sell reliability. This visualization demonstrates the efficiency of the LightForce "Asset-Free" model compared to standard retail procurement where risk and markup are high.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="text-[#F27A54] font-bold">01.</span>
+                            <p class="text-sm"><span class="font-bold text-white">Right-Sized Advice:</span> Technical precision over sales commissions.</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-[#F27A54] font-bold">02.</span>
+                            <p class="text-sm"><span class="font-bold text-white">Zero-Fake Guarantee:</span> Every product is physically audited before site delivery.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <p class="text-center text-xs font-brand text-white/50 mb-6 uppercase tracking-widest">Reliability Index: LightForce vs. Retail</p>
+                    <div class="chart-container">
+                        <canvas id="reliabilityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Leadership -->
+    <section id="leadership" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-xl">
+                    <p class="text-xs font-bold text-[#F27A54] uppercase tracking-widest mb-2">Executive Board</p>
+                    <h2 class="text-3xl font-brand text-[#0E2338]">Guided by Expertise, Driven by Vision.</h2>
+                    <p class="mt-4 text-gray-600">Meet the leaders shaping the future of energy in Africa. Select a leader below to view their strategic focus and professional background.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="switchLeader(0)" class="nav-btn-lead h-12 w-12 rounded-full border border-gray-200 hover:border-[#F27A54] flex items-center justify-center transition">1</button>
+                    <button onclick="switchLeader(1)" class="nav-btn-lead h-12 w-12 rounded-full border border-gray-200 hover:border-[#F27A54] flex items-center justify-center transition">2</button>
+                    <button onclick="switchLeader(2)" class="nav-btn-lead h-12 w-12 rounded-full border border-gray-200 hover:border-[#F27A54] flex items-center justify-center transition">3</button>
+                </div>
+            </div>
+
+            <div id="leader-display" class="grid lg:grid-cols-3 gap-8">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Vision & Values (Horizontal) -->
+    <section class="py-24 bg-slate-50 px-6 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+            <div>
+                <h4 class="text-xs font-bold text-[#0E2338] uppercase tracking-widest mb-4">Our Mission</h4>
+                <p class="text-xl font-medium text-gray-800 border-l-4 border-[#F27A54] pl-6 italic">
+                    "To build Africa’s most trusted energy company by making reliable energy simple to understand, practical to adopt, and dependable to grow with."
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-[#0E2338] uppercase tracking-widest mb-4">Our Vision</h4>
+                <p class="text-xl font-medium text-gray-800 border-l-4 border-slate-300 pl-6 italic">
+                    "To empower homes, businesses, and communities across Africa with trusted energy solutions that improve lives and create lasting impact."
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-16 flex flex-wrap gap-4 justify-center">
+            <span class="px-6 py-2 bg-white border border-gray-200 rounded-full text-xs font-bold text-[#0E2338] shadow-sm">INTEGRITY</span>
+            <span class="px-6 py-2 bg-white border border-gray-200 rounded-full text-xs font-bold text-[#0E2338] shadow-sm">EXCELLENCE</span>
+            <span class="px-6 py-2 bg-white border border-gray-200 rounded-full text-xs font-bold text-[#0E2338] shadow-sm">RELIABILITY</span>
+            <span class="px-6 py-2 bg-white border border-gray-200 rounded-full text-xs font-bold text-[#0E2338] shadow-sm">INNOVATION</span>
+            <span class="px-6 py-2 bg-white border border-gray-200 rounded-full text-xs font-bold text-[#0E2338] shadow-sm">PARTNERSHIP</span>
+        </div>
+    </section>
+
+    <!-- Section 6: Footer CTA -->
+    <section id="cta" class="py-24 px-6 text-center bg-white">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-brand text-[#0E2338] mb-6">Choose Confidence.</h2>
+            <p class="text-gray-600 mb-10 text-lg">Whether you are powering a home or an industrial complex, your investment deserves the protection of technical expertise.</p>
+            
+            <div class="bg-[#0E2338] p-10 rounded-3xl text-white">
+                <div class="grid sm:grid-cols-2 gap-8 text-left mb-10">
+                    <div>
+                        <p class="text-[#F27A54] font-bold mb-2">Products</p>
+                        <p class="text-xs text-white/60">Factory-direct & engineer-vetted.</p>
+                    </div>
+                    <div>
+                        <p class="text-[#F27A54] font-bold mb-2">People</p>
+                        <p class="text-xs text-white/60">Skilled, ethical professionals.</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/+2348126868155" class="inline-block bg-[#F27A54] text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition transform">Contact An Engineer Today</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 py-12 px-6 text-center">
+        <div class="font-brand text-white text-sm mb-4">LIGHTFORCE ELECTRIC</div>
+        <p class="text-white/40 text-[10px] tracking-widest uppercase">Building Africa's Most Trusted Energy Ecosystem © 2024</p>
+    </footer>
+
+    <script>
+        // Leadership Data
+        const leaders = [
+            {
+                name: "Henry Ezeonu",
+                title: "CEO & Founder",
+                quote: "Building Africa's most trusted energy ecosystem through integrity.",
+                bio: "Henry leads Light Force Electric’s strategic direction and institutional vision. His leadership is grounded in building long-term value, customer trust, and operational excellence."
+            },
+            {
+                name: "Precious Ubadike",
+                title: "Director & CTO",
+                quote: "Driving technical excellence & engineering innovation.",
+                bio: "Precious directs engineering standards and technical procurement protocols. He ensures every solar, grid, and backup system meets rigorous safety and reliability benchmarks."
+            },
+            {
+                name: "Uka Eje",
+                title: "Director",
+                quote: "Scaling strategic growth & governance across key markets.",
+                bio: "Uka brings enterprise governance and market expansion expertise. He focuses on scaling corporate partnerships and institutional relationships across cross-border supply networks."
+            }
+        ];
+
+        function switchLeader(index) {
+            const container = document.getElementById('leader-display');
+            container.innerHTML = '';
+            
+            leaders.forEach((leader, i) => {
+                const isActive = i === index;
+                const card = document.createElement('div');
+                card.className = `leadership-card p-8 rounded-2xl border ${isActive ? 'active border-[#F27A54]' : 'border-gray-100 opacity-60'} cursor-pointer bg-white`;
+                card.onclick = () => switchLeader(i);
+                
+                card.innerHTML = `
+                    <div class="text-xs font-bold text-[#F27A54] mb-1">${leader.title}</div>
+                    <h3 class="text-xl font-brand text-[#0E2338] mb-4">${leader.name}</h3>
+                    <p class="text-sm italic text-gray-500 mb-6">"${leader.quote}"</p>
+                    ${isActive ? `<p class="text-sm text-gray-600 leading-relaxed animate-in fade-in duration-500">${leader.bio}</p>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize Chart
+        function initChart() {
+            const ctx = document.getElementById('reliabilityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Authenticity', 'Cost Efficiency', 'Tech Support', 'Longevity'],
+                    datasets: [
+                        {
+                            label: 'LightForce Way',
+                            data: [100, 95, 100, 98],
+                            backgroundColor: '#F27A54',
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Standard Retail',
+                            data: [60, 70, 40, 55],
+                            backgroundColor: 'rgba(255,255,255,0.2)',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: 'white', font: { family: 'Montserrat', size: 10 } }
+                        },
+                        tooltip: {
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255,255,255,0.8)', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Startup
+        window.onload = () => {
+            switchLeader(0);
+            initChart();
+        };
+    </script>
+</body>
+</html>
