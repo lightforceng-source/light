@@ -13,17 +13,19 @@
     <meta property="og:title" content="Light Force | Asset-Free Electrical Procurement">
     <meta property="og:description" content="Engineer-vetted, factory-direct electrical procurement with zero fake supply risk.">
     <meta property="og:url" content="https://lightforceelectric.com">
-    <meta property="og:image" content="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png">
-    <meta property="og:image:secure_url" content="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png">
-    <meta property="og:image:type" content="image/png">
+    <meta property="og:image" content="https://uploads.onecompiler.io/44w39854p/1785013112394/1000634213.jpg">
+    <meta property="og:image:secure_url" content="https://uploads.onecompiler.io/44w39854p/1785013112394/1000634213.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Light Force logo">
+    <meta property="og:image:alt" content="Light Force Hero Image">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Light Force | Asset-Free Electrical Procurement">
     <meta name="twitter:description" content="Engineer-vetted, factory-direct electrical procurement with zero fake supply risk.">
-    <meta name="twitter:image" content="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png">
+    <meta name="twitter:image" content="https://uploads.onecompiler.io/44w39854p/1785013112394/1000634213.jpg">
     <meta name="theme-color" content="#0E2338">
+
+    <!-- Favicon Assets -->
     <link rel="icon" href="https://uploads.onecompiler.io/44w39854p/1784818611462/slazzer-preview-x1p31.png">
     <link rel="shortcut icon" href="https://uploads.onecompiler.io/44w39854p/1784818611462/slazzer-preview-x1p31.png">
     <link rel="apple-touch-icon" href="https://uploads.onecompiler.io/44w39854p/1784818611462/slazzer-preview-x1p31.png">
@@ -34,6 +36,7 @@
     
     <style>
         :root {
+            /* Exact Blue from source document */
             --brand-blue: #0E2338;
             --brand-blue-deep: #071426;
             --brand-orange: #F27A54;
@@ -83,11 +86,11 @@
             left: 0;
             right: 0;
             width: 100%;
-            padding: max(15px, env(safe-area-inset-top)) 5% 15px;
+            padding: max(12px, env(safe-area-inset-top)) 5% 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(18, 18, 18, 0.92);
+            background: rgba(14, 35, 56, 0.94); /* Exact brand blue backdrop */
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
@@ -95,14 +98,28 @@
         }
 
         .logo { 
-            font-size: 1rem; 
+            font-size: 1.1rem; 
             font-weight: bold; 
             color: white; 
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 2px;
+            gap: 12px;
         }
+
+        /* Enlarged Favicon Asset (9x Scale) */
+        .header-favicon-large {
+            width: 108px; /* Enlarged 9x from typical 12px inline icon */
+            height: auto;
+            max-height: 52px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+        .logo:hover .header-favicon-large {
+            transform: scale(1.05);
+        }
+
         .logo span { color: var(--brand-orange); }
 
         .nav-links { 
@@ -187,8 +204,8 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(18, 18, 18, 0.82), rgba(7, 20, 38, 0.92)), 
-                        url('https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1974&auto=format&fit=crop');
+            background: linear-gradient(rgba(14, 35, 56, 0.85), rgba(7, 20, 38, 0.95)), 
+                        url('https://uploads.onecompiler.io/44w39854p/1785013112394/1000634213.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -196,7 +213,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 120px 8% 60px;
+            padding: 130px 8% 60px;
             color: white;
         }
 
@@ -292,7 +309,7 @@
             margin-bottom: 60px;
         }
 
-        /* Split Feature */
+        /* Split Feature Section - Updated Image Reference */
         .split-feature {
             display: flex;
             flex-direction: column;
@@ -304,12 +321,12 @@
         .feature-image {
             height: 380px;
             width: 100%;
-            background: url('https://uploads.onecompiler.io/44w39854p/1784805641029/0.7509234118431367.jpg') center top/cover no-repeat;
+            background: url('https://uploads.onecompiler.io/44w39854p/1785013112394/1000634213.jpg') center top/cover no-repeat;
             position: relative;
             order: 1;
         }
 
-        /* Stats Dashboard */
+        /* Stats Dashboard - Built on Brand Blue */
         .stats-banner {
             background: linear-gradient(135deg, var(--brand-blue-deep), var(--brand-blue));
             color: white;
@@ -355,8 +372,9 @@
 
         /* Desktop Breakpoints */
         @media (min-width: 900px) {
-            nav { padding: 20px 8%; }
+            nav { padding: 18px 8%; }
             .logo { font-size: 1.2rem; }
+            .header-favicon-large { width: 120px; max-height: 58px; }
             .nav-btn { font-size: 0.65rem; padding: 10px 24px; }
             .hero-btns { flex-direction: row; max-width: none; justify-content: center; }
             .section-padding { padding: 120px 10%; }
@@ -384,7 +402,11 @@
 <body>
 
     <nav>
-        <a href="#" class="logo brand-font">LIGHT<span>FORCE</span></a>
+        <a href="#" class="logo brand-font">
+            <!-- 9x Enlarged Favicon Asset -->
+            <img src="https://uploads.onecompiler.io/44w39854p/1784818611462/slazzer-preview-x1p31.png" alt="Light Force Emblem" class="header-favicon-large">
+            <span>LIGHT</span>FORCE
+        </a>
         
         <!-- Desktop Nav -->
         <div class="nav-links">
@@ -445,6 +467,7 @@
         </div>
     </section>
 
+    <!-- Updated Section Image with specified asset URL -->
     <section id="intelligence" class="split-feature">
         <div class="feature-content">
             <p class="mono">// FIELD INTELLIGENCE</p>
@@ -456,7 +479,7 @@
                 <p style="font-size: 0.9rem;"><strong style="color: var(--brand-orange);">+</strong> Professional Engineer Audit</p>
             </div>
         </div>
-        <div class="feature-image"></div>
+        <div class="feature-image" aria-label="Light Force Electrical Field Equipment"></div>
     </section>
 
     <section class="stats-banner">
@@ -491,8 +514,11 @@
         </a>
     </section>
 
-    <footer style="padding: 60px 8%; background: var(--obsidian); color: white; text-align: center; border-t: 1px solid rgba(255,255,255,0.1);">
-        <div class="logo brand-font" style="margin-bottom: 20px; justify-content: center;">LIGHT<span>FORCE</span></div>
+    <footer style="padding: 60px 8%; background: var(--brand-blue-deep); color: white; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="logo brand-font" style="margin-bottom: 20px; justify-content: center;">
+            <img src="https://uploads.onecompiler.io/44w39854p/1784818611462/slazzer-preview-x1p31.png" alt="Light Force Logo" style="width: 48px; height: auto;">
+            <span>LIGHT</span>FORCE
+        </div>
         <p style="font-size: 0.65rem; opacity: 0.6; letter-spacing: 2px; font-family: 'Roboto Mono', monospace;">ASSET-FREE ELECTRICAL PROCUREMENT | INFO@LIGHTFORCEELECTRIC.COM // NIGERIA 2026</p>
     </footer>
 
