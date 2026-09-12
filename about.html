@@ -20,12 +20,13 @@
     <link rel="icon" href="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png">
     <link rel="shortcut icon" href="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png">
     <link rel="apple-touch-icon" href="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png">
-    <link rel="mask-icon" href="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png" color="#080C1E">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Montserrat:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Animation Engine & Chart Libraries -->
+    <!-- External Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -35,13 +36,15 @@
         :root {
             --brand-navy: #080C1E;
             --brand-navy-deep: #050713;
+            --brand-navy-surface: #0E142A;
             --brand-orange: #FC4E02;
             --brand-orange-hover: #E04300;
             --stark-white: #FFFFFF;
             --apple-grey: #F5F5F7;
+            --apple-border: rgba(0, 0, 0, 0.08);
+            --apple-dark-border: rgba(255, 255, 255, 0.12);
         }
 
-        /* Reset & GPU Optimization */
         * {
             margin: 0;
             padding: 0;
@@ -50,66 +53,895 @@
         }
 
         body {
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--stark-white);
-            color: #121212;
+            color: #111827;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
         .font-brand { 
             font-family: 'Michroma', sans-serif; 
             text-transform: uppercase;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02em;
         }
 
         .mono {
             font-family: 'Roboto Mono', monospace;
             text-transform: uppercase;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
             color: var(--brand-orange);
             font-weight: 700;
         }
 
-        /* Fixed Navigation Bar */
+        /* Fixed Navigation Bar - Modern Glassmorphism */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             width: 100%;
-            padding: max(12px, env(safe-area-inset-top)) 5% 12px;
+            height: 72px;
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(8, 12, 30, 0.94);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(8, 12, 30, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            will-change: transform;
+            border-bottom: 1px solid var(--apple-dark-border);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .logo { 
-            font-size: 1.1rem; 
-            font-weight: bold; 
+            font-size: 1.05rem; 
+            font-weight: 700; 
             color: white; 
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
+            letter-spacing: -0.01em;
         }
 
         .header-favicon-large {
-            height: 46px;
+            height: 40px;
             width: auto;
             object-fit: contain;
-            border-radius: 6px;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            border-radius: 8px;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        .logo:hover .header-favicon-large {
+            transform: scale(1.08) rotate(-3deg);
+        }
+
+        .logo span { color: var(--brand-orange); }
+
+        .nav-links { 
+            display: flex; 
+            align-items: center;
+            gap: 16px; 
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 9px 20px;
+            font-family: 'Michroma', sans-serif;
+            font-size: 0.65rem;
+            border-radius: 8px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .nav-btn.primary { 
+            background: var(--brand-orange); 
+            color: white; 
+            box-shadow: 0 4px 14px rgba(252, 78, 2, 0.3);
+        }
+        .nav-btn.primary:hover {
+            background: var(--brand-orange-hover);
+            transform: translateY(-1.5px);
+            box-shadow: 0 6px 20px rgba(252, 78, 2, 0.45);
+        }
+        .nav-btn.secondary { 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            color: rgba(255, 255, 255, 0.85); 
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .nav-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1.5px);
+        }
+
+        /* Mobile Drawer Screen */
+        #mobile-drawer {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 7, 19, 0.98);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease-in-out;
+            padding: 32px 24px;
+        }
+        #mobile-drawer.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #mobile-drawer a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Michroma', sans-serif;
+            font-size: 0.78rem;
+            padding: 14px 24px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.25s ease;
+        }
+        #mobile-drawer a:active {
+            transform: scale(0.98);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Hero Wrapper */
+        .hero-wrapper {
+            position: relative;
+            background: var(--brand-navy-deep);
+        }
+
+        .hero {
+            min-height: 88vh;
+            background: linear-gradient(180deg, rgba(8, 12, 30, 0.82) 0%, rgba(5, 7, 19, 0.96) 100%), 
+                        url('https://uploads.onecompiler.io/44w39854p/1785013112394/1000634213.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 6% 80px;
+            color: white;
+        }
+
+        .btn-main {
+            padding: 16px 32px;
+            text-decoration: none;
+            font-family: 'Michroma', sans-serif;
+            font-size: 0.7rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-orange { 
+            background: var(--brand-orange); 
+            color: white; 
+            box-shadow: 0 8px 24px rgba(252, 78, 2, 0.35);
+        }
+        .btn-orange:hover {
+            background: var(--brand-orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(252, 78, 2, 0.5);
+        }
+        .btn-glass { 
+            background: rgba(255, 255, 255, 0.08); 
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            backdrop-filter: blur(12px);
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .preorder-banner {
+            background: linear-gradient(135deg, rgba(252, 78, 2, 0.05) 0%, rgba(8, 12, 30, 0.02) 100%);
+            border: 1px solid rgba(252, 78, 2, 0.4);
+            border-radius: 24px;
+            padding: 48px 40px;
+            margin-bottom: 70px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+        }
+
+        .preorder-badge {
+            display: inline-block;
+            background: rgba(252, 78, 2, 0.12);
+            color: var(--brand-orange);
+            border: 1px solid rgba(252, 78, 2, 0.25);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Leadership Cards Styling */
+        .leadership-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--stark-white);
+            border: 1px solid var(--apple-border);
+            padding: 32px;
+        }
+        .leadership-card.active {
+            border-color: var(--brand-orange);
+            box-shadow: 0 20px 40px rgba(252, 78, 2, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .service-card {
+            background: var(--apple-grey);
+            border: 1px solid var(--apple-border);
+            border-radius: 20px;
+            padding: 32px 28px;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover {
+            border-color: rgba(252, 78, 2, 0.5);
+            background: white;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Workflow Step Cards */
+        .step-card {
+            background: var(--stark-white);
+            border-radius: 20px;
+            padding: 28px 24px;
+            border: 1px solid var(--apple-border);
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            border-color: var(--brand-navy);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+        }
+        .step-num {
+            font-family: 'Michroma', sans-serif;
+            color: var(--brand-orange);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        /* Clean Footer Layout */
+        footer.main-footer {
+            padding: 80px 8% 40px;
+            background: var(--brand-navy-deep);
+            color: white;
+            border-top: 1px solid var(--apple-dark-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            color: var(--brand-orange);
+            margin-bottom: 24px;
+            letter-spacing: 0.15em;
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            transition: color 0.25s ease;
+        }
+
+        .footer-col a:hover { color: var(--brand-orange); }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .footer-contact-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--brand-orange);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: max(24px, env(safe-area-inset-bottom));
+            right: 24px;
+            z-index: 900;
+            background: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+        .floating-whatsapp:hover { transform: scale(1.08); }
+
+        .reveal-node {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo font-brand">
+            <img src="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png" alt="LightForce Emblem" class="header-favicon-large">
+            <span>LIGHT</span>FORCE
+        </a>
+        
+        <div class="nav-links hidden md:flex">
+            <a href="index.html" class="nav-btn secondary">Home</a>
+            <a href="estimate.html" class="nav-btn secondary">Get Quote</a>
+            <a href="https://paystack.shop/lightforceelectric" target="_blank" rel="noopener noreferrer" class="nav-btn primary">Pre-Order Batch 001</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-white bg-white/10 p-2 rounded-lg border border-white/20 focus:outline-none" aria-label="Toggle Navigation Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer">
+        <a href="https://paystack.shop/lightforceelectric" target="_blank" rel="noopener noreferrer" style="background: var(--brand-orange); color: white; border: none;">Pre-Order Batch 001</a>
+        <a href="index.html" class="mobile-drawer-link">Home</a>
+        <a href="#purpose" class="mobile-drawer-link">Who We Are</a>
+        <a href="#offerings" class="mobile-drawer-link">What We Offer</a>
+        <a href="#workflow" class="mobile-drawer-link">How We Work</a>
+        <a href="#leadership" class="mobile-drawer-link">Leadership</a>
+        <a href="estimate.html" class="mobile-drawer-link">Get Quote</a>
+    </div>
+
+    <div class="hero-wrapper">
+        <header class="hero" id="hero-bg">
+            <p class="mono reveal-node" id="hero-mono">// COMPANY PROFILE & BRAND STORY</p>
+            <h1 class="reveal-node font-brand text-3xl sm:text-4xl md:text-5xl text-white my-6 max-w-4xl leading-tight font-extrabold tracking-tight" id="hero-title">
+                Reliable Power. Real People. Real Impact.
+            </h1>
+            <p class="reveal-node text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mb-10 font-normal leading-relaxed" id="hero-desc">
+                Making reliable energy simple to understand, affordable to adopt, & easy to grow into.
+            </p>
+            <div class="hero-btns reveal-node flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center" id="hero-btns">
+                <a href="https://paystack.shop/lightforceelectric" target="_blank" rel="noopener noreferrer" class="btn-main btn-orange">Pre-Order Batch 001</a>
+                <a href="#purpose" class="btn-main btn-glass">Explore Profile</a>
+            </div>
+        </header>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 py-20">
+
+        <!-- Pre-Order Highlight Banner -->
+        <div id="preorder" class="preorder-banner reveal-node">
+            <span class="preorder-badge">FOUNDERS BATCH 001 // RESERVATIONS OPEN</span>
+            <h2 class="font-brand text-2xl md:text-3xl text-[#080C1E] mb-4 font-bold">
+                Be Among The First To Experience LightForce.
+            </h2>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl mb-8">
+                Reliable power shouldn’t be a luxury. We are opening <strong>LightForce Founders Batch 001</strong> to forward-thinking individuals and business owners ready to reserve units directly from our inaugural production batch. Built on total transparency, production commences August 15 with estimated delivery late October. Secure your spot in history before the batch closes.
+            </p>
+            <a href="https://paystack.shop/lightforceelectric" target="_blank" rel="noopener noreferrer" class="btn-main btn-orange text-xs gap-2 inline-flex">
+                <span>Reserve Your Unit Now</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Section 1: Who We Are & Purpose -->
+        <section id="purpose" class="mb-28">
+            <div class="mb-12">
+                <p class="mono mb-2">[ WHO WE ARE ]</p>
+                <h2 class="font-brand text-2xl md:text-4xl text-[#080C1E] font-bold">Removing Uncertainty in Power.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-50 p-8 md:p-10 rounded-3xl border border-slate-200/80 reveal-node">
+                    <h3 class="font-brand text-lg text-[#080C1E] mb-4 font-semibold">The LightForce Mandate</h3>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                        LightForce Electric Limited is an independent consumer energy company committed to removing uncertainty in Nigeria’s power system. We provide quality electrical products, solar and energy solutions, and professional installations that help homes, businesses, and industries enjoy reliable power every day.
+                    </p>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                        We operate an <strong class="text-slate-800">asset-light, technology-enabled model</strong> that allows us to deliver top-quality products and services efficiently, transparently, and affordably without warehouse inflation taxes.
+                    </p>
+                </div>
+
+                <div class="bg-[#080C1E] text-white p-8 md:p-10 rounded-3xl reveal-node flex flex-col justify-between">
+                    <div>
+                        <p class="mono text-[#FC4E02] mb-3">// BRAND FOUNDATION</p>
+                        <h3 class="font-brand text-xl text-white mb-6">Vision & Mission</h3>
+                        
+                        <div class="mb-6 pb-6 border-b border-white/10">
+                            <h4 class="font-brand text-xs text-[#FC4E02] uppercase mb-2">Our Vision</h4>
+                            <p class="text-white/90 text-sm font-light italic">"To be Africa’s most trusted consumer energy company."</p>
+                        </div>
+
+                        <div class="mb-6 pb-6 border-b border-white/10">
+                            <h4 class="font-brand text-xs text-[#FC4E02] uppercase mb-2">Our Mission</h4>
+                            <p class="text-white/90 text-sm font-light italic">"To make reliable energy simple to understand, affordable to adopt, and easy to grow into."</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-brand text-xs text-[#FC4E02] uppercase mb-2">Our Brand Promise</h4>
+                            <p class="text-white/90 text-sm font-light">"We deliver reliable products, expert solutions and exceptional service you can trust."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white p-8 rounded-3xl border border-slate-200/80 reveal-node">
+                <p class="mono text-center mb-6">[ OUR CORE VALUES ]</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
+                    <div class="p-4 bg-slate-50 rounded-2xl font-brand text-xs text-[#080C1E] border border-slate-100 hover:border-[#FC4E02] transition-colors">INTEGRITY</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl font-brand text-xs text-[#080C1E] border border-slate-100 hover:border-[#FC4E02] transition-colors">EXCELLENCE</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl font-brand text-xs text-[#080C1E] border border-slate-100 hover:border-[#FC4E02] transition-colors">RELIABILITY</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl font-brand text-xs text-[#080C1E] border border-slate-100 hover:border-[#FC4E02] transition-colors">INNOVATION</div>
+                    <div class="p-4 bg-slate-50 rounded-2xl font-brand text-xs text-[#080C1E] border border-slate-100 col-span-2 sm:col-span-1 hover:border-[#FC4E02] transition-colors">CUSTOMER FIRST</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: What We Offer -->
+        <section id="offerings" class="mb-28">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <p class="mono mb-2">[ WHAT WE OFFER ]</p>
+                <h2 class="font-brand text-2xl md:text-4xl text-[#080C1E] font-bold">Complete Energy Infrastructure</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card reveal-node">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FC4E02]/10 text-[#FC4E02] flex items-center justify-center font-bold text-xl mb-6">💡</div>
+                    <h4 class="font-brand text-sm text-[#080C1E] mb-2 font-semibold">Lighting Solutions</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Indoor, Outdoor, Solar & Decorative Lighting engineered for optimal power efficiency.</p>
+                </div>
+
+                <div class="service-card reveal-node">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FC4E02]/10 text-[#FC4E02] flex items-center justify-center font-bold text-xl mb-6">🌀</div>
+                    <h4 class="font-brand text-sm text-[#080C1E] mb-2 font-semibold">Fans & Appliances</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Solar Fans, High-Torque Ceiling Fans & Custom Ventilation Solutions for homes & businesses.</p>
+                </div>
+
+                <div class="service-card reveal-node">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FC4E02]/10 text-[#FC4E02] flex items-center justify-center font-bold text-xl mb-6">☀️</div>
+                    <h4 class="font-brand text-sm text-[#080C1E] mb-2 font-semibold">Solar Solutions</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Solar Panels, All-In-One Solar Kits & Mounting Accessories built to IEEE standards.</p>
+                </div>
+
+                <div class="service-card reveal-node">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FC4E02]/10 text-[#FC4E02] flex items-center justify-center font-bold text-xl mb-6">🔋</div>
+                    <h4 class="font-brand text-sm text-[#080C1E] mb-2 font-semibold">Inverters & Batteries</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Pure Sine Inverters, Lithium/Tubular Batteries & Seamless Power Backup Systems.</p>
+                </div>
+
+                <div class="service-card reveal-node">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FC4E02]/10 text-[#FC4E02] flex items-center justify-center font-bold text-xl mb-6">🔌</div>
+                    <h4 class="font-brand text-sm text-[#080C1E] mb-2 font-semibold">Electrical Accessories</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Factory-vetted Wires, Switches, Sockets, Circuit Breakers & Distribution Boards.</p>
+                </div>
+
+                <div class="service-card reveal-node">
+                    <div class="w-12 h-12 rounded-2xl bg-[#FC4E02]/10 text-[#FC4E02] flex items-center justify-center font-bold text-xl mb-6">🛠️</div>
+                    <h4 class="font-brand text-sm text-[#080C1E] mb-2 font-semibold">Services & Installation</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Turnkey Electrical Installations, Commercial Solar Deployments & Preventive Maintenance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="mb-28 bg-slate-50 p-8 sm:p-12 md:p-16 rounded-3xl border border-slate-200/80">
+            <div class="mb-12">
+                <p class="mono mb-2">[ HOW WE WORK ]</p>
+                <h2 class="font-brand text-2xl md:text-3xl text-[#080C1E] font-bold">Our 7-Step Quality Engine</h2>
+                <p class="text-slate-600 text-sm mt-2">Transparent technical audit from initial inquiry to long-term site support.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="step-card reveal-node">
+                    <div class="step-num">01</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">INQUIRY</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">You tell us your load requirement and project specifications.</p>
+                </div>
+
+                <div class="step-card reveal-node">
+                    <div class="step-num">02</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">ASSESSMENT</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">Our field engineers assess and calculate the optimal solution.</p>
+                </div>
+
+                <div class="step-card reveal-node">
+                    <div class="step-num">03</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">QUOTATION</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">We provide a transparent, line-item factory-direct quotation.</p>
+                </div>
+
+                <div class="step-card reveal-node">
+                    <div class="step-num">04</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">RESERVATION</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">Secure payment or batch unit reservation protocol.</p>
+                </div>
+
+                <div class="step-card reveal-node">
+                    <div class="step-num">05</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">PROCUREMENT</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">Engineers audit and source factory-fresh assets directly.</p>
+                </div>
+
+                <div class="step-card reveal-node">
+                    <div class="step-num">06</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">DELIVERY</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">Direct site dispatch & professional certified installation.</p>
+                </div>
+
+                <div class="step-card reveal-node sm:col-span-2 lg:col-span-2">
+                    <div class="step-num">07</div>
+                    <h5 class="font-brand text-xs text-[#080C1E] mb-2 font-semibold">AFTER-SALES SUPPORT</h5>
+                    <p class="text-xs text-slate-600 leading-relaxed">Continuous support, maintenance health-checks, and warranty protection long after delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-28">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <p class="mono mb-2">[ WHO WE SERVE ]</p>
+                <h2 class="font-brand text-2xl md:text-3xl text-[#080C1E] font-bold">Empowering Diverse Sectors</h2>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏠</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Homes</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏢</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Businesses</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏗️</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Construction</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏘️</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Estates</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">💼</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Offices</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏨</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Hotels</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏥</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Hospitals</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">🏭</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Factories</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">👷</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Contractors</p>
+                </div>
+                <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl text-center reveal-node hover:border-[#FC4E02] transition-colors">
+                    <div class="text-2xl mb-2">⚡</div>
+                    <p class="font-brand text-xs text-[#080C1E]">Industries</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Chart Comparison Section -->
+        <section class="mb-28 bg-[#080C1E] text-white p-8 sm:p-12 md:p-16 rounded-3xl">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="mono text-[#FC4E02] mb-3">// REVOLUTIONIZING PROCUREMENT</p>
+                    <h2 class="font-brand text-2xl md:text-3xl mb-6 font-bold">Asset-Light vs Traditional Retail</h2>
+                    <p class="text-white/70 text-sm leading-relaxed mb-6">
+                        By eliminating middleman warehouses, physical retail rent, and stock-carrying costs, LightForce offers direct manufacturer-vetted power equipment at up to 35% reduced cost with zero risk of counterfeit elements.
+                    </p>
+                    <div class="space-y-4 text-xs">
+                        <div class="flex items-center gap-3">
+                            <span class="text-[#FC4E02] font-bold">✓</span>
+                            <span>Direct factory point-of-distribution physical verification</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-[#FC4E02] font-bold">✓</span>
+                            <span>IEEE and Nigerian grid compliance verification</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 h-[320px]">
+                    <canvas id="reliabilityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="leadership" class="mb-24">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+                <div>
+                    <p class="mono mb-2">[ EXECUTIVE BOARD ]</p>
+                    <h2 class="font-brand text-2xl md:text-3xl text-[#080C1E] font-bold">Leadership & Governance</h2>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="switchLeader(0)" class="w-10 h-10 rounded-full border border-slate-300 font-brand text-xs hover:border-[#FC4E02] transition-colors">1</button>
+                    <button onclick="switchLeader(1)" class="w-10 h-10 rounded-full border border-slate-300 font-brand text-xs hover:border-[#FC4E02] transition-colors">2</button>
+                    <button onclick="switchLeader(2)" class="w-10 h-10 rounded-full border border-slate-300 font-brand text-xs hover:border-[#FC4E02] transition-colors">3</button>
+                </div>
+            </div>
+
+            <div id="leader-display" class="grid md:grid-cols-3 gap-8">
+                <!-- Executive Cards Populated via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-grid">
+            
+            <div class="footer-col" style="grid-column: span 1;">
+                <a href="index.html" class="logo font-brand mb-6">
+                    <img src="https://uploads.onecompiler.io/44w39854p/1784818455765/Gemini_Generated_Image_r37242r37242r372.png" alt="Light Force Logo" style="height: 44px; width: auto; border-radius: 6px;">
+                    <span>LIGHT</span>FORCE
+                </a>
+                <p class="mb-4">
+                    Asset-light electrical procurement model delivering 100% engineer-vetted, factory-direct power equipment across Nigeria with zero fake supply risk.
+                </p>
+                <p class="mono text-[0.65rem]">
+                    // LIGHTFORCE FOUNDERS BATCH 001
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="font-brand">Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="estimate.html">Get a Quote</a>
+                <a href="https://paystack.shop/lightforceelectric" target="_blank" rel="noopener noreferrer">Pre-Order Batch 001</a>
+                <a href="#offerings">What We Offer</a>
+                <a href="#workflow">How We Work</a>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="font-brand">Headquarters</h4>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <p>LightForce Electric HQ<br>Plot 14 Commercial District,<br>Lekki Phase 1, Lagos, Nigeria</p>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="font-brand">Contact Us</h4>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <a href="mailto:info@lightforceelectric.com">info@lightforceelectric.com</a>
+                </div>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <a href="tel:+2348126868155">+234 812 686 8155</a>
+                </div>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <p>Mon - Sat: 8:00 AM - 6:00 PM WAT</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <p style="font-size: 0.65rem; opacity: 0.6; letter-spacing: 0.12em; font-family: 'Roboto Mono', monospace;">
+                © 2026 LIGHTFORCE ELECTRIC LTD. ALL RIGHTS RESERVED. BUILT BY <a href="https://15d.name.ng" target="_blank" class="hover:underline">15D GROUP</a>
+            </p>
+            <div class="flex gap-6 text-xs text-white/50 font-mono">
+                <a href="#" class="hover:text-[#FC4E02] transition-colors">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-[#FC4E02] transition-colors">TERMS OF SERVICE</a>
+                <a href="estimate.html" class="hover:text-[#FC4E02] transition-colors">REQUEST QUOTE</a>
+                <a href="https://paystack.shop/lightforceelectric" target="_blank" rel="noopener noreferrer" class="hover:text-[#FC4E02] transition-colors">PRE-ORDER BATCH 001</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <a href="https://wa.me/2348126868155" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contact on WhatsApp">
+        <svg style="width: 28px; height: 28px; fill: currentColor;" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Leadership Data Protocol
+        const leaders = [
+            {
+                name: "Henry Ezeonu",
+                title: "CEO & Founder",
+                image: "https://uploads.onecompiler.io/44w39854p/1784831997086/Gemini_Generated_Image_siaoi3siaoi3siao%20(1).png",
+                quote: "Building Africa's most trusted energy ecosystem through integrity.",
+                bio: "Henry leads LightForce Electric’s overall strategic direction, institutional partnerships, and brand vision. Grounded in building long-term customer trust and operational excellence."
+            },
+            {
+                name: "Precious Ubadike",
+                title: "CTO & Director",
+                image: "https://uploads.onecompiler.io/44w39854p/1785013222844/1000406638.jpg",
+                quote: "Harmonizing brand strategy, technical growth, and software engineering.",
+                bio: "Precious shapes LightForce's digital platform infrastructure, technical engineer vetting protocols, and growth expansion strategy across primary distribution hubs."
+            },
+            {
+                name: "Uka Eje",
+                title: "Director",
+                image: "https://uploads.onecompiler.io/44w39854p/1788082304706/1000668016.png",
+                quote: "Scaling strategic growth & governance across key energy markets.",
+                bio: "Uka brings enterprise governance, supply chain scaling, and commercial strategy to LightForce Electric, driving key corporate partnerships and cross-border expansion."
+            }
+        ];
+
+        function switchLeader(index) {
+            const container = document.getElementById('leader-display');
+            container.innerHTML = '';
+            
+            leaders.forEach((leader, i) => {
+                const isActive = i === index;
+                const card = document.createElement('div');
+                card.className = `leadership-card ${isActive ? 'active' : 'opacity-75'} cursor-pointer bg-white`;
+                card.onclick = () => switchLeader(i);
+                
+                card.innerHTML = `
+                    <div class="w-20 h-20 rounded-full overflow-hidden mb-5 border-2 border-[#FC4E02]/30 shadow-sm">
+                        <img src="${leader.image}" alt="${leader.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="mono text-[0.65rem] text-[#FC4E02] mb-1">${leader.title}</div>
+                    <h3 class="font-brand text-lg text-[#080C1E] mb-2 font-semibold">${leader.name}</h3>
+                    <p class="text-xs italic text-slate-500 mb-4 leading-relaxed">"${leader.quote}"</p>
+                    ${isActive ? `<p class="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-4">${leader.bio}</p>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize Chart Engine
+        function initChart() {
+            const ctx = document.getElementById('reliabilityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Authenticity', 'Cost Savings', 'Tech Support', 'Longevity'],
+                    datasets: [
+                        {
+                            label: 'LightForce Asset-Light',
+                            data: [100, 95, 100, 98],
+                            backgroundColor: '#FC4E02',
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Standard Warehouses',
+                            data: [60, 65, 40, 55],
+                            backgroundColor: 'rgba(255,255,255,0.18)',
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: 'white', font: { family: 'Plus Jakarta Sans', size: 11 } }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(255,255,255,0.06)' },
+                            ticks: { color: 'rgba(255,255,255,0.6)', font: { size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255,255,255,0.8)', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Navbar Reveal
+            gsap.from('#navbar', { y: -80, opacity: 0, duration: 1, ease: 'power4.out' });
+
+            // Hero Timeline
+            const heroTl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1 } });
+            heroTl.fromTo('#hero-mono', { opacity: 0, y: 25 }, { opacity: 1, y: 0, delay: 0.2 })
+                  .fromTo('#hero-title', { opacity: 0, y: 35 }, { opacity: 1, y: 0 }, '-=0.8')
+                  .fromTo('#hero-desc', { opacity: 0, y: 25 }, { opacity: 1, y: 0 }, '-=0.8')
+                  .fromTo('#hero-btns', { opacity: 0, y: 25 }, { opacity: 1, y: 0 }, '-=0.8');
+
+            // Scroll Triggers
+            gsap.utils.toArray('.reveal-node:not(#hero-mono):not(#hero-title):not(#hero-desc):not(#hero-btns)').forEach((node) => {
+                gsap.fromTo(node, 
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: { trigger: node, start: 'top 88%' }
+                    }
+                );
+            });
+
+            // Mobile Drawer Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const drawer = document.getElementById('mobile-drawer');
+            const drawerLinks = document.querySelectorAll('#mobile-drawer a');
+
+            if (menuBtn && drawer) {
+                menuBtn.addEventListener('click', () => {
+                    drawer.classList.toggle('active');
+                });
+
+                drawerLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        drawer.classList.remove('active');
+                    });
+                });
+            }
+
+            switchLeader(0);
+            initChart();
+        });
+    </script>
+</body>
+</html>
+```        }
         .logo:hover .header-favicon-large {
             transform: scale(1.08) rotate(-2deg);
         }
